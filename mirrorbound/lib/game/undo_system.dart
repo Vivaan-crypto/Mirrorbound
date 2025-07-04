@@ -1,6 +1,6 @@
+import 'package:flame/components.dart';
 import 'package:mirrorbound/components/player.dart';
 import 'package:mirrorbound/game/physics_engine.dart';
-import 'package:vector_math/vector_math.dart';
 
 class GameState {
   final Vector2 playerPosition;

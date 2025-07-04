@@ -1,23 +1,30 @@
 {
   "id": 1,
   "name": "First Reflection",
-  "player_start": [100, 400],
+  "playerStart": [100, 400],
   "goal": [700, 400],
   "mirrors": [
     {
-      "position": [400, 300],
-      "size": [20, 200],
-      "orientation": "vertical"
+      "x": 400,
+      "y": 300,
+      "width": 20,
+      "height": 200,
+      "orientation": "vertical",
+      "isRealWorld": true
     }
   ],
   "platforms": [
     {
-      "position": [200, 450],
-      "size": [150, 20]
+      "x": 200,
+      "y": 450,
+      "width": 150,
+      "height": 20
     },
     {
-      "position": [600, 450],
-      "size": [150, 20]
+      "x": 600,
+      "y": 450,
+      "width": 150,
+      "height": 20
     }
   ],
   "hazards": [],

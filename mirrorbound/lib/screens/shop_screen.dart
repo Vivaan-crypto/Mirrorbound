@@ -36,16 +36,16 @@ class _ShopScreenState extends State<ShopScreen> {
         itemCount: cosmetics.length,
         itemBuilder: (context, index) {
           final item = cosmetics[index];
-          final isOwned = ownedSkins.contains(item['id'] as String); // Added cast
+          final isOwned = ownedSkins.contains(item['id'] as String);
 
           return ListTile(
             leading: const Icon(Icons.shopping_bag),
-            title: Text(item['name']),
+            title: Text(item['name'] as String),
             subtitle: Text(isOwned ? 'Owned' : '\$${item['price']}'),
             trailing: isOwned
                 ? const Icon(Icons.check, color: Colors.green)
                 : ElevatedButton(
-              onPressed: () => _purchaseItem(item['id'] as String), // Added cast
+              onPressed: () => _purchaseItem(item['id'] as String),
               child: const Text('Buy'),
             ),
           );
@@ -54,11 +54,13 @@ class _ShopScreenState extends State<ShopScreen> {
     );
   }
 
-  void _purchaseItem(String id) async { // Added type
+  void _purchaseItem(String id) async {
     await purchaseSkin(id);
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Purchase successful!')),
-    );
-    _loadOwnedSkins();
+    if (mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Purchase successful!')),
+      );
+      _loadOwnedSkins();
+    }
   }
 }

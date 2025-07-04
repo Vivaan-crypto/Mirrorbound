@@ -1,13 +1,13 @@
-import 'package:haptic_feedback/haptic_feedback.dart';
+import 'package:flutter/services.dart';
 
 Future<void> triggerHapticFeedback() async {
-  await Haptics.vibrate(HapticsType.success);
+  HapticFeedback.lightImpact();
 }
 
 Future<void> triggerErrorHaptic() async {
-  await Haptics.vibrate(HapticsType.error);
+  HapticFeedback.heavyImpact();
 }
 
 Future<void> triggerCompletionHaptic() async {
-  await Haptics.vibrate(HapticsType.heavy);
+  HapticFeedback.mediumImpact();
 }

@@ -1,7 +1,6 @@
-import 'package:flame/collisions.dart';
+import 'package:flame/components.dart';
 import 'package:mirrorbound/components/player.dart';
 import 'package:mirrorbound/utils/constants.dart';
-import 'package:vector_math/vector_math.dart';
 
 class MirrorPhysics {
   Vector2 realWorldGravity = Constants.baseGravity;

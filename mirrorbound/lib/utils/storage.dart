@@ -1,6 +1,4 @@
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:hive/hive.dart';
-import 'package:path_provider/path_provider.dart' as path_provider;
 
 Future<void> initStorage() async {
   final prefs = await SharedPreferences.getInstance();
@@ -10,11 +8,6 @@ Future<void> initStorage() async {
   if (!prefs.containsKey('owned_skins')) {
     await prefs.setStringList('owned_skins', ['default']);
   }
-}
-
-Future<void> initHive() async {
-  final appDir = await path_provider.getApplicationDocumentsDirectory();
-  Hive.init(appDir.path);
 }
 
 Future<void> unlockLevels(int level) async {

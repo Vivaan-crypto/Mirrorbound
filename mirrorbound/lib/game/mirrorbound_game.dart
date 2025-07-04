@@ -1,13 +1,12 @@
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
-import 'package:flame/input.dart';
+import 'package:flame/components.dart';
 import 'package:mirrorbound/components/player.dart';
 import 'package:mirrorbound/game/level_manager.dart';
 import 'package:mirrorbound/game/physics_engine.dart';
 import 'package:mirrorbound/game/undo_system.dart';
 
-class MirrorBoundGame extends FlameGame
-    with HasCollisionDetection, TapDetector, PanDetector {
+class MirrorBoundGame extends FlameGame with HasCollisionDetection, HasTapDetector, HasPanDetector {
   final int levelId;
   late Player player;
   late MirrorPhysics physics;
@@ -46,7 +45,7 @@ class MirrorBoundGame extends FlameGame
 
   void invertGravity() {
     physics.invertMirrorGravity();
-    undoSystem.saveState( // Added parameters
+    undoSystem.saveState(
       player: player,
       physics: physics,
     );
@@ -55,7 +54,7 @@ class MirrorBoundGame extends FlameGame
   @override
   void onTap() {
     player.jump();
-    undoSystem.saveState( // Added parameters
+    undoSystem.saveState(
       player: player,
       physics: physics,
     );
@@ -63,7 +62,7 @@ class MirrorBoundGame extends FlameGame
 
   @override
   void onPanUpdate(DragUpdateInfo info) {
-    final delta = info.delta; // Removed .game
+    final delta = info.delta.global;
     player.move(delta.x > 0 ? 1 : -1);
   }
 }

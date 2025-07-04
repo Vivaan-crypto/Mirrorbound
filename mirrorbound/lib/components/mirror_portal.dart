@@ -3,12 +3,11 @@ import 'dart:ui';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/particles.dart';
-import 'package:flame/input.dart'; // Added for TapCallbacks
 import 'package:mirrorbound/game/color_engine.dart';
 import 'package:mirrorbound/utils/constants.dart';
 import 'package:mirrorbound/utils/haptics.dart';
 
-class MirrorPortal extends SpriteComponent with TapCallbacks { // Changed to TapCallbacks
+class MirrorPortal extends SpriteComponent with HasGameRef, TapCallbacks {
   final ColorEngine colorEngine;
   bool isActive = false;
   bool isRealWorld = true;
@@ -21,7 +20,7 @@ class MirrorPortal extends SpriteComponent with TapCallbacks { // Changed to Tap
 
   @override
   Future<void> onLoad() async {
-    sprite = await game.loadSprite('mirror_portal.png'); // Changed to game
+    sprite = await gameRef.loadSprite('mirror_portal.png');
     _addParticles();
   }
 
@@ -48,9 +47,10 @@ class MirrorPortal extends SpriteComponent with TapCallbacks { // Changed to Tap
   }
 
   @override
-  void onTapDown(TapDownEvent event) { // Updated method signature
+  bool onTapDown(TapDownEvent event) {
     isActive = !isActive;
     colorEngine.activateMirror(this);
     triggerHapticFeedback();
+    return true;
   }
 }
