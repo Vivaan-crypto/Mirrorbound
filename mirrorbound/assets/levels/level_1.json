@@ -1,0 +1,25 @@
+{
+  "id": 1,
+  "name": "First Reflection",
+  "player_start": [100, 400],
+  "goal": [700, 400],
+  "mirrors": [
+    {
+      "position": [400, 300],
+      "size": [20, 200],
+      "orientation": "vertical"
+    }
+  ],
+  "platforms": [
+    {
+      "position": [200, 450],
+      "size": [150, 20]
+    },
+    {
+      "position": [600, 450],
+      "size": [150, 20]
+    }
+  ],
+  "hazards": [],
+  "light_sources": []
+}
